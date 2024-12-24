@@ -1,0 +1,787 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap');
+
+body{
+background-color: #000000;
+font-family: 'Dancing Script', cursive;
+}
+
+/* Titulos de las alertas */
+
+.titulo01{
+  color: white;
+}
+
+.titulo02{
+  color: #000000;
+  text-shadow: 2px 2px 0 #FFFFFF, -2px -2px 0 #FFFFFF, 2px -2px 0 #FFFFFF, -2px 2px 0 #FFFFFF;
+}
+
+/* para el contenedor amor  */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedor01{
+  position: absolute;
+  height: 30vh;
+  margin-top: 20%;
+}
+
+/* Reproductor de música navideña */
+.player .info {
+  position: absolute;
+  height: 80px;
+  margin-top: -10px;
+  opacity: 0;
+  left: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 5px 15px 5px 110px;
+  border-radius: 25px;
+  transition: all 0.5s ease;
+}
+
+.player .info .artist,
+.player .info .name {
+  display: block;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.player .info .artist {
+  color: #222;
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-left: -30px;
+}
+
+.player .info .name {
+  color: #4d4646;
+  font-size: 12px;
+  margin-bottom: 8px;
+  margin-left: -15px;
+}
+
+.player .info .progress-bar {
+  background-color: white;
+  width: 90%;
+  height: 4px;
+  position: relative;
+}
+
+.player .info .progress-bar .bar {
+  position: relative;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #5eff1e;
+  width: 0%;
+  height: 100%;
+  transition: width 0.2s linear;
+}
+
+.player .info.active {
+  top: -60px;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+.player .control-panel {
+  position: relative;
+  background-color: #816666;
+  border-radius: 15px;
+  width: 300px;
+  height: 75px;
+  z-index: 5;
+  box-shadow: 0 20px 20px 5px rgba(245, 183, 183, 0.3);
+}
+
+.player .control-panel .album-art {
+  position: absolute;
+  left: 20px;
+  top: -25px;
+  height: 90px;
+  width: 90px;
+  box-shadow: 0 20px 20px 5px rgba(0, 0, 0, 0);
+  transform: scale(1);
+  transition: all 0.5s ease;
+}
+
+.img1 {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  margin-left: -50px;
+  cursor: pointer;
+}
+
+.click-text { 
+  text-align: center; 
+  margin-top: -25px; 
+  font-size: 13px; 
+  color: white; 
+  font-weight: bold; 
+} 
+
+.click-text .arrow { 
+  display: block; 
+  font-size: 10px; 
+  animation: flecha 2s ease-in-out infinite;
+}
+
+@keyframes flecha{
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    opacity: 0.5;
+    transform: translateX(-10px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(0px);
+  }
+  75% {
+    transform: translateX(10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Controles del reproductor */
+
+.player .control-panel .album-art::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80px;
+}
+
+.player .control-panel.active .album-art {
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0).2;
+  transform: scale(1.2);
+  transition: all o.5s ease;
+}
+
+.player .control-panel .controls {
+  display: flex;
+  justify-content: flex-end;
+  height: 80px;
+  padding: 0 15px
+}
+
+.player .control-panel .controls .play {
+  width: 55px;
+  height: auto;
+  border-radius: 10px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 50px;
+  margin: 5px 0;
+  background-color: #816666;
+  cursor: pointer;
+  transition: background-color 0.3 ease;
+}
+
+
+.player .control-panel .controls .prev,
+.player .control-panel .controls .next {
+  width: 55px;
+  height: auto;
+  border-radius: 10px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  margin: 5px 0;
+  background-color: #816666;
+  cursor: pointer;
+  transition: background-color 0.3 ease;
+}
+
+.player .control-panel .controls .prev:hover,
+.player .control-panel .controls .play:hover,
+.player .control-panel .controls .next:hover {
+  background-color: #928b8b83;
+  transition: background-color 0.3s ease;
+}
+
+.player .control-panel .controls .prev {
+  background-image: url(img/anterior.png);
+}
+
+.player .control-panel .controls .play {
+  background-image: url(img/play.png);
+}
+
+.player .control-panel .controls .next {
+  background-image: url(img/siguiente.png);
+}
+
+.player .control-panel.active .controls .play {
+  background-image: url(img/stop.png);
+}
+
+.titulo{
+  color: rgba(255, 255, 255, 0.685);
+  font-family: 'Dancing Script', cursive;
+}
+
+/*  Contenedor de luces con el conteo regresivo amor */
+
+.container_luces{
+  margin-top: -20px;
+}
+
+.box1{
+  background-color: rgb(245, 35, 35);
+  border-top: 3px solid #fff;
+  animation: esfera 2s ease-in-out infinite;
+}
+
+.box2{
+  border-right: 3px solid #fff;
+  animation: esfera 2s ease-in-out infinite;
+  background-color: rgb(46, 230, 46);
+}
+
+.box3{
+  border-bottom: 3px solid #fff;
+  animation: esfera 2s ease-in-out infinite;
+  background-color: rgb(251, 255, 0);
+}
+
+.box4{
+  border-left: 3px solid #fff;
+  animation: esfera 2s ease-in-out infinite;
+  background-color: rgb(192, 59, 192);
+}
+
+.card{
+  mix-blend-mode: screen;
+  font-family: 'Pacifico', cursive;
+  text-shadow: 
+  0px 0px 10px rgb(0, 0, 0),
+  0px 0px 20px rgb(72, 80, 67),
+  0px 0px 30px rgb(0, 0, 0),
+  0px 0px 40px rgb(255, 255, 255),
+  0px 0px 50px rgb(0, 0, 0);  
+}
+
+.card.h-100 {
+  width: 150px;
+  height: 130px;
+  border-radius: 50%;
+}
+
+.card.h-100::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 70px;
+  width: 16px;
+  height: 20px;
+  border: 3px solid grey;
+  border-top: 3px solid #fbff009a;
+}
+
+.card-title, .card-text{
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes esfera{
+  0% {
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.5;
+    transform: rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Gif de navidad */
+
+.navidad{
+  width: 150px;
+}
+
+.gifText {
+  color: white;
+  font-size: 22px;
+}
+
+.text-html{
+  font-size: 20px;
+  color: rgb(0, 141, 141);
+  background-color: #fff;
+  -webkit-text-stroke: 0.5px #000000;
+}
+
+.ColorText {
+  color: #000000;
+}
+
+
+/* Botones */
+
+.botOn{
+  height: 15vh;
+}
+
+.sorpresa{
+  font-family: 'Pacifico', cursive;
+  background-color: #ccc;
+  color: #000000;
+  letter-spacing: 1.5px;
+  width: 250px;
+  margin-top: -70px;
+  border-color: #ffffff;
+  border-radius: 20px;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.sorpresa.active:hover{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 20px 5px rgba(183, 212, 245, 0.3);
+}
+
+/* boton 2 */
+
+.sorpresa2{
+  font-family: 'Pacifico', cursive;
+  background-color: #72f73400;
+  color: #000000;
+  letter-spacing: 1.5px;
+  width: 250px;
+  margin-top: 0px;
+  border-color: #ffffff;
+  border-radius: 20px;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.sorpresa2.active:hover{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 20px 5px rgba(183, 212, 245, 0.3);
+}
+
+/* Nieve acumulada */
+
+.wave1 {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  top: 135.2%;
+}
+
+/* Copos de nieve  */
+
+.snow {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 100;
+
+}
+
+.snow1 {
+  top: -10px;
+  left: 85%;
+  animation: nieve 5.8s ease-in infinite;
+}
+
+.snow2 {
+  top: -10px;
+  left: 5%;
+  animation: nieve 4s ease-in infinite;
+}
+
+.snow3 {
+  top: -5px;
+  left: 15%;
+  animation: nieve 6s ease-in infinite;
+  opacity: 0.5;
+}
+
+.snow4 {
+  top: -10px;
+  left: 20%;
+  animation: nieve 3s ease-in infinite;
+}
+
+.snow5 {
+  top: -5px;
+  left: 25%;
+  opacity: 0.2;
+  animation: nieve 9s ease-in infinite;
+}
+
+.snow6 {
+  top: -10px;
+  left: 30%;
+  animation: nieve 7.3s ease-in infinite;
+}
+
+.snow7 {
+  top: -5px;
+  left: 10%;
+  opacity: 0.1;
+  animation: nieve 3.2s ease-in infinite;
+}
+
+.snow8 {
+  top: 7px;
+  left: 18%;
+  opacity: 0.1;
+  animation: nieve 8.8s ease-in infinite;
+}
+
+.snow9 {
+  top: -10px;
+  left: 2%;
+  opacity: 0.1;
+  animation: nieve 2s ease-in infinite;
+}
+
+.snow10 {
+  top: -10px;
+  left: 23%;
+  opacity: 0.1;
+  animation: nieve 15s ease-in infinite;
+}
+
+.snow11 {
+  top: -3px;
+  left: 18%;
+  opacity: 1;
+  animation: nieve 17s ease-in infinite;
+}
+
+.snow12 {
+  top: -10px;
+  left: 27%;
+  opacity: 1;
+  animation: nieve 11.2s ease-in infinite;
+}
+
+.snow13 {
+  top: -10px;
+  left: 11%;
+  opacity: 1;
+  animation: nieve 12.9s ease-in infinite;
+}
+
+.snow14 {
+  top: -10px;
+  left: 32%;
+  opacity: 0.1;
+  animation: nieve 4.5s ease-in infinite;
+}
+
+.snow15 {
+  top: -10px;
+  left: 35%;
+  opacity: 1;
+  animation: nieve 13s ease-in infinite;
+}
+
+.snow16 {
+  top: -20px;
+  left: 37%;
+  opacity: 0.1;
+  animation: nieve 10.8s ease-in infinite;
+}
+
+.snow17 {
+  top: -10px;
+  left: 39%;
+  opacity: 1;
+  animation: nieve 7.4s ease-in infinite;
+}
+
+.snow18 {
+  top: -10px;
+  left: 42%;
+  opacity: 0.1;
+  animation: nieve 15.4s ease-in infinite;
+}
+
+.snow19 {
+  top: -10px;
+  left: 45%;
+  opacity: 1;  
+  animation: nieve 3.2s ease-in infinite;
+}
+
+.snow20 {
+  top: -10px;
+  left: 48%;
+  opacity: 0.1;
+  animation: nieve 5.9s ease-in infinite;
+}
+
+.snow21 {
+  top: -10px;
+  left: 50%;
+  opacity: 1;
+  animation: nieve 3.6s ease-in infinite;
+}
+
+.snow22 {
+  top: -10px;
+  left: 52%;
+  opacity: 0.1;
+  animation: nieve 7.5s ease-in infinite;
+}
+
+.snow23 {
+  top: -10px;
+  left: 55%;
+  opacity: 1;
+  animation: nieve 15.3s ease-in infinite;
+}
+
+.snow24 {
+  top: -10px;
+  left: 57%;
+  opacity: 0.1;
+  animation: nieve 16.7s ease-in infinite;
+}
+
+.snow25 {
+  top: -10px;
+  left: 59%;
+  opacity: 1;
+  animation: nieve 2.9s ease-in infinite;
+}
+
+.snow26 {
+  top: -10px;
+  left: 52%;
+  opacity: 1;
+  animation: nieve 14.2s ease-in infinite;
+}
+
+.snow27 {
+  top: -10px;
+  left: 23%;
+  opacity: 1;
+  animation: nieve 16.4s ease-in infinite;
+}
+
+.snow28 {
+  top: -10px;
+  left: 35%;
+  opacity: 1;
+  animation: nieve 2.2s ease-in infinite;
+}
+
+.snow29 {
+  top: -10px;
+  left: 54%;
+  opacity: 1;
+  animation: nieve 8s ease-in infinite;
+}
+
+.snow30 {
+  top: -10px;
+  left: 56%;
+  opacity: 0.1;
+  animation: nieve 2.8s ease-in infinite;
+}
+
+.snow31 {
+  top: -10px;
+  left: 58%;
+  opacity: 0.1;
+  animation: nieve 12.2s ease-in infinite;
+}
+
+.snow32 {
+  top: -10px;
+  left: 59%;
+  opacity: 1;
+  animation: nieve 10.3s ease-in infinite;
+}
+
+.snow33 {
+  top: -10px;
+  left: 60%;
+  opacity: 1;
+  animation: nieve 4.7s ease-in infinite;
+}
+
+.snow34 {
+  top: -10px;
+  left: 63%;
+  opacity: 0.1;
+  animation: nieve 7.7s ease-in infinite;
+}
+
+.snow35 {
+  top: -10px;
+  left: 65%;
+  opacity: 1;
+  animation: nieve 13.6s ease-in infinite;
+}
+
+.snow36 {
+  top: -10px;
+  left: 68%;
+  opacity: 0.1;
+  animation: nieve 9.9s ease-in infinite;
+}
+
+.snow37 {
+  top: -10px;
+  left: 70%;
+  opacity: 1;
+  animation: nieve 14.4s ease-in infinite;
+}
+
+.snow38 {
+  top: -10px;
+  left: 73%;
+  opacity: 0.1;
+  animation: nieve 3.6s ease-in infinite;
+}
+
+.snow39 {
+  top: -10px;
+  left: 75%;
+  opacity: 1;
+  animation: nieve 18.8s ease-in infinite;
+}
+
+.snow40 {
+  top: -10px;
+  left: 78%;
+  opacity: 0.1;
+  animation: nieve 10.1s ease-in infinite;
+}
+
+.snow41 {
+  top: -10px;
+  left: 80%;
+  opacity: 1;
+  animation: nieve 14.5s ease-in infinite;
+}
+
+.snow42 {
+  top: -10px;
+  left: 83%;
+  opacity: 0.1;
+  animation: nieve 12.9s ease-in infinite;
+}
+
+.snow43 {
+  top: -10px;
+  left: 88%;
+  opacity: 1;
+  animation: nieve 2.7s ease-in infinite;
+}
+
+.snow44 {
+  top: -10px;
+  left: 90%;
+  opacity: 0.1;
+  animation: nieve 9.5s ease-in infinite;
+}
+
+.snow45 {
+  top: -10px;
+  left: 93%;
+  opacity: 1;
+  animation: nieve 14.6s ease-in infinite;
+}
+
+.snow46 {
+  top: -10px;
+  left: 95%;
+  opacity: 0.1;
+  animation: nieve 15.9s ease-in infinite;
+}
+
+.snow47 {
+  top: -10px;
+  left: 98%;
+  opacity: 1;
+  animation: nieve 7.3s ease-in infinite;
+}
+
+.snow48 {
+  top: -10px;
+  left: 97%;
+  opacity: 0.1;
+  animation: nieve 8.8s ease-in infinite;
+}
+
+.snow49 {
+  top: -10px;
+  left: 82%;
+  opacity: 1;
+  animation: nieve 3.5s ease-in infinite;
+}
+
+.snow50 {
+  top: -10px;
+  left: 88%;
+  opacity: 0.1;
+  animation: nieve 17.8s ease-in infinite;;
+}
+
+/* Animación para la nieve amor */
+
+@keyframes nieve {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(175vh);
+  }
+}
+
+/* Responsivo */
+
+@media screen and (max-width: 770px){
+  .contenedor01{
+    margin-top: 350px;
+  }
+  .titulo{
+    font-size: 20px;
+  }
+  .navidad{
+    width: 125px;
+  }
+  .container_luces{
+    margin-top: -45px;
+    margin-left: 26%;
+  }
+  .botOn{
+    height: 15vh;
+  }
+  .wave1 {
+    background: transparent;
+    margin-top: -20.2%;
+  }
+}
